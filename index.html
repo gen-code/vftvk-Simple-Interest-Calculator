@@ -1,37 +1,48 @@
-function compute()
-{
-	//variables to compute
-    var principal = document.getElementById("principal").value;
-    var rate = document.getElementById("rate").value;
-    var years = document.getElementById("years").value;
-    
-    //interest calculator
-    var interest = principal * years * rate / 100;
-    var endYear = new Date().getFullYear() + parseInt(years);
-     var compounded = principal * ((1 + ((rate/100)/12)) ** (12*years))
-		
-    //validate the principal, if negative show error
-    if(principal <= 0){
-        alert("Enter a positive number");
-        document.getElementById("principal").focus();
-        return false;
-    }
-    
-    //the result
-    document.getElementById("result").innerHTML = `If you deposit <mark>${principal}</mark>,<br>
-    at an interest rate of 
-    <mark>${rate}</mark>.<br>
-    You will receive an amount of <mark>${interest.toFixed(2)}</mark>,<br>
-    in the year <mark>${endYear}</mark>
-    <br>
-    <br>
-    With monthly compounded interest your balance would instead be <mark>${compounded.toFixed(2)}</mark>`;
-}
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <title>Simple Interest Calculator</title>
+    </head>
+    <body>
+        <div class="maindiv">
+            <h1>Simple Interest Calculator</h1>
+            
+            Amount 
+            <input type="number"  id="principal">  
+            <br/>
+            <br>
 
-//update the rate
-function updateRate()
-{
-    var rateVal = document.getElementById("rate").value;
-    document.getElementById("rateVal").innerText = `${rateVal}%`;
-}
-        
+            Interest Rate 
+            <input type="range"  id="rate" min="1" max="20" step="0.25" value="10.25" onchange="updateRate()">
+            <span id="rateVal">10.25%</span>  
+            <br/>
+            
+            <br>
+            No. of Years
+                <select name="number"  id="years"> 
+ 	                <option value="1">1</option>
+                    <option value="2">2</option>
+ 	                <option value="3">3</option>
+                    <option value="4">4</option>
+ 	                <option value="5">5</option>
+                    <option value="6">6</option>
+ 	                <option value="7">7</option>
+                    <option value="8">8</option>
+ 	                <option value="9">9</option>
+                    <option value="10">10</option>
+                </select> 
+            <br/>
+            
+            <br>
+            <button onclick="compute()">Compute Interest</button>
+            </br>
+            <br>
+            <span id="result"></span>
+            <br>
+            
+            <footer>&#169; This Calculator belongs to Gen Ulanday/footer>
+        </div>
+    </body>
+</html>
